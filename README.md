@@ -11,10 +11,11 @@
 [![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
 [![SQLite](https://img.shields.io/badge/SQLite-Zero_Config-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![Gemini AI](https://img.shields.io/badge/Gemini_AI-Vision_%26_Pricing-8E75C2?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-park--ease--sage.vercel.app-00DC82?style=for-the-badge&logo=vercel&logoColor=white)](https://park-ease-sage.vercel.app)
 
 <br />
 
-[Features](#-key-features) • [Visual Showcase](#-visual-showcase) • [Architecture](#-architecture) • [Demo Credentials](#-instant-demo-credentials) • [Getting Started](#-getting-started) • [Environment Variables](#-environment-variables)
+[🌐 **Live Demo**](https://park-ease-sage.vercel.app) • [Features](#-key-features) • [Visual Showcase](#-visual-showcase) • [Architecture](#-architecture) • [Demo Credentials](#-instant-demo-credentials) • [Getting Started](#-getting-started) • [Environment Variables](#-environment-variables)
 
 </div>
 
@@ -138,6 +139,9 @@ Skip manual sign-ups using pre-seeded test accounts (Password: **`password123`**
 | 🚘 **Driver** | `demo.driver@parkease.com` | Destination search, AI recommendation cards, booking, payment, and QR scan check-in. |
 | 🏠 **Owner / Host** | `demo.owner@parkease.com` | Yield timeline, listing spaces, testing AI photo verification, applying smart surge pricing. |
 | 🛠️ **Administrator** | `admin@parkease.com` | Platform KPIs, viewing flagged listings, manual approval/rejection moderation queue. |
+
+> [!TIP]
+> 🌐 **Experience the Live Web App**: You can try all these flows live without any local setup at **[https://park-ease-sage.vercel.app](https://park-ease-sage.vercel.app)**!
 
 ---
 
