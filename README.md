@@ -15,7 +15,7 @@
 
 <br />
 
-[🌐 **Live Demo**](https://park-ease-sage.vercel.app) • [Features](#-key-features) • [Visual Showcase](#-visual-showcase) • [Architecture](#-architecture) • [Demo Credentials](#-instant-demo-credentials) • [Getting Started](#-getting-started) • [Environment Variables](#-environment-variables)
+[🌐 **Live Demo**](https://park-ease-sage.vercel.app) • [Features](#-key-features) • [Visual Showcase](#-visual-showcase) • [Architecture](#-architecture) • [Demo Credentials](#-instant-demo-credentials) • [Getting Started](#-getting-started) • [Team](#-core-team--contributors)
 
 </div>
 
@@ -264,6 +264,40 @@ parkease/
 
 ---
 
+## 👥 Core Team & Contributors
+
+A huge shoutout to the team behind **ParkEase**:
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="220px">
+        <a href="https://github.com/ganeshpatel1409">
+          <img src="https://github.com/ganeshpatel1409.png?size=100" width="80px;" style="border-radius: 50%;" alt="Ganesh Patel"/><br />
+          <sub><b>Ganesh Patel</b></sub>
+        </a><br />
+        <sub>Project Lead & Full Stack</sub>
+      </td>
+      <td align="center" width="220px">
+        <a href="https://github.com/manas-3321">
+          <img src="https://github.com/manas-3321.png?size=100" width="80px;" style="border-radius: 50%;" alt="Manas Kumar"/><br />
+          <sub><b>Manas Kumar</b></sub>
+        </a><br />
+        <sub>Core Developer</sub>
+      </td>
+      <td align="center" width="220px">
+        <a href="https://github.com/organic-gaurav">
+          <img src="https://github.com/organic-gaurav.png?size=100" width="80px;" style="border-radius: 50%;" alt="Gaurav Bhatt"/><br />
+          <sub><b>Gaurav Bhatt</b></sub>
+        </a><br />
+        <sub>Core Developer</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
+
 ## 🤝 Contributing
 
 Contributions make the open-source community an incredible place to learn, inspire, and create. Any contributions you make are **greatly appreciated**!
@@ -283,5 +317,5 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <b>Ganesh Patel</b> & the ParkEase Team</sub>
+  <sub>Built with ❤️ by <b>Ganesh Patel</b>, <b>Manas Kumar</b>, and <b>Gaurav Bhatt</b></sub>
 </div>
