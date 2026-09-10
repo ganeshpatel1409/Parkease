@@ -1,0 +1,156 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:../dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  password      String
+  name          String
+  role          String         // "DRIVER", "OWNER", "ADMIN"
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  parkingSpaces ParkingSpace[] @relation("OwnerSpaces")
+  bookings      Booking[]      @relation("DriverBookings")
+  reviews       Review[]
+  payments      Payment[]
+  notifications Notification[]
+}
+
+model ParkingSpace {
+  id                 String             @id @default(uuid())
+  ownerId            String
+  owner              User               @relation("OwnerSpaces", fields: [ownerId], references: [id], onDelete: Cascade)
+  name               String
+  description        String
+  address            String
+  latitude           Float
+  longitude          Float
+  pricePerHour       Float
+  capacity           Int
+  vehicleType        String             // "TWO_WHEELER", "FOUR_WHEELER", "BOTH"
+  status             String             // "PENDING", "VERIFIED", "REJECTED"
+  verificationScore  Int                @default(0)
+  availabilityStatus String             // "AVAILABLE", "UNAVAILABLE"
+  images             ParkingImage[]
+  bookings           Booking[]
+  reviews            Review[]
+  verifications      Verification[]
+  availabilities     Availability[]
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  @@index([latitude, longitude])
+  @@index([status])
+  @@index([ownerId])
+}
+
+model ParkingImage {
+  id                 String       @id @default(uuid())
+  parkingSpaceId     String
+  parkingSpace       ParkingSpace @relation(fields: [parkingSpaceId], references: [id], onDelete: Cascade)
+  url                String
+  isVerificationPhoto Boolean     @default(false)
+  createdAt          DateTime     @default(now())
+}
+
+model Availability {
+  id             String       @id @default(uuid())
+  parkingSpaceId String
+  parkingSpace   ParkingSpace @relation(fields: [parkingSpaceId], references: [id], onDelete: Cascade)
+  dayOfWeek      Int          // 0 = Sunday, 1 = Monday, etc.
+  startTime      String       // "HH:MM" format
+  endTime        String       // "HH:MM" format
+  createdAt      DateTime     @default(now())
+}
+
+model Booking {
+  id             String       @id @default(uuid())
+  driverId       String
+  driver         User         @relation("DriverBookings", fields: [driverId], references: [id], onDelete: Cascade)
+  parkingSpaceId String
+  parkingSpace   ParkingSpace @relation(fields: [parkingSpaceId], references: [id], onDelete: Cascade)
+  startTime      DateTime
+  endTime        DateTime
+  durationHours  Float
+  totalAmount    Float
+  platformFee    Float
+  status         String       // "PENDING", "RESERVED", "OCCUPIED", "COMPLETED", "CANCELLED"
+  qrCode         String       @unique
+  checkInTime    DateTime?
+  checkOutTime   DateTime?
+  payment        Payment?
+  reviews        Review[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([driverId])
+  @@index([parkingSpaceId])
+  @@index([status])
+  @@index([startTime, endTime])
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  bookingId   String   @unique
+  booking     Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderId     String   // Razorpay order id or simulator order id
+  paymentId   String?  // Razorpay payment id or simulator payment id
+  signature   String?  // Razorpay signature
+  amount      Float
+  status      String   // "PENDING", "SUCCESS", "FAILED", "REFUNDED"
+  provider    String   // "RAZORPAY", "SIMULATOR"
+  createdAt   DateTime @default(now())
+}
+
+model Review {
+  id             String       @id @default(uuid())
+  bookingId      String
+  booking        Booking      @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  driverId       String
+  driver         User         @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  parkingSpaceId String
+  parkingSpace   ParkingSpace @relation(fields: [parkingSpaceId], references: [id], onDelete: Cascade)
+  rating         Int
+  comment        String
+  createdAt      DateTime     @default(now())
+}
+
+model Verification {
+  id             String       @id @default(uuid())
+  parkingSpaceId String
+  parkingSpace   ParkingSpace @relation(fields: [parkingSpaceId], references: [id], onDelete: Cascade)
+  status         String       // "PENDING", "VERIFIED", "REJECTED", "NEEDS_REVIEW"
+  confidence     Float
+  details        String       // JSON serialized check results
+  createdAt      DateTime     @default(now())
+}
+
+model Event {
+  id                        String   @id @default(uuid())
+  name                      String
+  location                  String
+  latitude                  Float
+  longitude                 Float
+  startTime                 DateTime
+  endTime                   DateTime
+  estimatedDemand           String   // "LOW", "MEDIUM", "HIGH", "VERY_HIGH"
+  demandReductionPercentage Float    // demand impact multiplier e.g. 72%
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
